@@ -25,7 +25,6 @@ P.X(1:4,1:4)=-1;
 P.N=[2,1,1,1];
 P.Tmin=[1,1,1,1];
 P.Tmax=[2,2,1,2];
-P.Rotation = 2;
+P.
 S = RandomSolve(P);
-
 end
