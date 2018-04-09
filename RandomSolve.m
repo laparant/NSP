@@ -3,9 +3,12 @@ function [ S ] = RandomSolve( P )
     
     
     S = P.X;
-    R = randperm(nbInf*nbP);
+    
 
     while sum(sum(S))<sum(P.N)
+        S= P.X;
+        R = randperm(nbInf*nbP);
+        
         %Pour toutes les cases du tableau de manière aléatoire
         for  d=1:nbInf*nbP
             r=R(d);
