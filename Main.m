@@ -21,20 +21,19 @@ function [] = Main()
 %Test réalisable
 %Model parameters
 
-P.X(1:4,1:4)=-1;
-P.N=[2,1,1,1];
-P.Tmin=[1,1,1,1];
-P.Tmax=[2,2,1,2];
-P.s = 3;
-P.C = [6 6 6 6; 4 4 4 4; 5 5 5 5; 2 2 2 2];
-S = RandomSolve(P);
-TS(P,100)
+P.X(1:60,1:21)=-1;
+P.N=[repmat([20,15,10],1,5) repmat([30,20,10],1,2)];
+P.Tmin=[repmat(2,1,8) repmat(4,1,52)];
+P.Tmax=[repmat(3,1,8) repmat(7,1,52)];
+P.s = 150;
+P.C = repmat([repmat([150 200 200],1,5) repmat([200 250 250],1,2)],60,1);
 
 %GRASP
 %Parameters
 nbIteration = 1000;
 %Algorithm execution
 [BestSolution, ObjectiveValues]= GRASP(P,nbIteration);
+TS(P,nbIteration);
 plot(ObjectiveValues);
 
 PlotSolution(BestSolution, P);
