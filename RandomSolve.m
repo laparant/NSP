@@ -12,10 +12,10 @@ function [ S ] = RandomSolve( P )
         %Pour toutes les cases du tableau de manière aléatoire
         for  d=1:nbInf*nbP
             r=R(d);
-            i=ceil(r/nbInf);
-            j=mod(r,nbInf);
+            i=ceil(r/nbP);
+            j=mod(r,nbP);
             if j==0
-               j=nbInf ;
+               j=nbP;
             end
             %Si la case est non remplie,y placer une infirmière
             if S(i,j)==-1
