@@ -34,6 +34,8 @@ TS(P,100)
 %Parameters
 nbIteration = 1000;
 %Algorithm execution
-[BestSolution ObjectiveValues]= GRASP(P,nbIteration);
+[BestSolution, ObjectiveValues]= GRASP(P,nbIteration);
 plot(ObjectiveValues);
+
+PlotSolution(BestSolution, P);
 end
