@@ -29,4 +29,11 @@ P.s = 3;
 P.C = [6 6 6 6; 4 4 4 4; 5 5 5 5; 2 2 2 2];
 S = RandomSolve(P);
 TS(P,100)
+
+%GRASP
+%Parameters
+nbIteration = 1000;
+%Algorithm execution
+[BestSolution ObjectiveValues]= GRASP(P,nbIteration);
+plot(ObjectiveValues);
 end
