@@ -22,7 +22,7 @@ for n = 1:1:r
 end
 yticklabels(nurses);
 xticklabels(repmat({'AM','PM','N'},1,size(S,2)));
-
+set(gca,'xaxisLocation','top')
 title(['Nurses Schedule' 10 ...
        'Total wages : $' num2str(ObjectiveValue(P,S))],'FontSize',12);
 
