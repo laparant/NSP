@@ -28,10 +28,5 @@ P.Tmax=[2,2,1,2];
 P.s = 3;
 P.C = [6 6 6 6; 4 4 4 4; 5 5 5 5; 2 2 2 2];
 S = RandomSolve(P);
-% Test IsLegal
-IsLegal(P,S)
-% Test Objective Value
-ObjectiveValue(P,S)
-% Test findNeighbor
-findNeighbor(P,S)
+TS(P,100)
 end
