@@ -1,18 +1,23 @@
 function [ S ] = RandomSolve( P )
     [nbInf,nbP]=size(P.X);
-    
-    
     S = P.X;
     
-
     while sum(sum(S))<sum(P.N)
-        disp(S)
-        S= P.X;
-        R = randperm(nbInf*nbP);
         
+        S = P.X;
+        R = 1:nbInf*nbP;
+        Weights = repmat(P.N,1,nbInf);
+        Weights = Weights./sum(Weights);
         %Pour toutes les cases du tableau de manière aléatoire
         for  d=1:nbInf*nbP
-            r=R(d);
+            if d~=nbInf*nbP
+                r = randsample(R, 1, true, Weights);
+            else
+                r = R(1);
+            end
+            ind = find(R==r);
+            R(ind)=[];
+            Weights(ind)=[];
             i=ceil(r/nbP);
             j=mod(r,nbP);
             if j==0
