@@ -15,7 +15,8 @@ TabuList = zeros(size(S,2),size(S,1),size(S,1));
 G = 0;
 
 %% Termination condition : all constraints fulfilled or Gmax reached
-while G < NSP.Gmax &&  ~conditionsFulfilled(NSP,S)
+while G < NSP.Gmax && Fitness(NSP,S) ~= 0
+    disp(G)
     % Generating neighborhood of S
     [N,Nmvt] = Neighborhood(NSP,S);
     
