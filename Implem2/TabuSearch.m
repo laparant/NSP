@@ -24,13 +24,13 @@ BestCost=[Fitness(NSP,S)];
 while G < NSP.Gmax && Fitness(NSP,S) ~= 0
     
     % Generating neighborhood of S
-    [N,Nmvt] = Neighborhood(NSP,S);
+    [N,Nmvt] = Neighborhood(NSP,S,TabuList);
     
     % Evaluating the neighboorhood
     NFitness = FitnessN(NSP,N);
     
     % Selecting next solution
-    [S,mvt] = nextSolution(N,Nmvt,NFitness,TabuList);
+    [S,mvt] = nextSolution(N,Nmvt,NFitness);
     
     % Update tabu list
     TabuList = updateTabuList(mvt, TabuList);
