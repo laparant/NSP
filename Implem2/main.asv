@@ -1,0 +1,12 @@
+%% Defining NSP (Nurse Scheduling Problem)
+% Gmax : maximum number of iterations
+NSP.Gmax = 1000;
+% Number of nurses
+NSP.nurses = 10;
+% Number of periods
+NSP.periods = 21;
+% Number of nurses required by period
+NSP.N = [5 5 5 5 5 5 5 5 5 
+
+% Launching Tabu Search
+TabuSearch(NSP);

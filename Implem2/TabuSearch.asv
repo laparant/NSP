@@ -1,0 +1,27 @@
+function S = TabuSearch(NSP)
+%% Initialization
+% Randomly create the first solution
+S = GenerateRandomSolution(NSP);
+% Initializing Tabu List
+TabuList = ;
+% Initializing G
+G = 0;
+
+%% Termination condition : all constraints fulfilled or Gmax reached
+while G < NSP.Gmax &&  ~conditionsFulfilled(NSP,S)
+    % Generating neighborhood of S
+    [N,Nmvt] = Neighborhood(NSP,S);
+    
+    % Evaluating the neighboorhood
+    NFitness = FitnessN(NSP,N);
+    
+    % Selecting next solution
+    [S,mvt] = nextSolution(N,Nmvt,NFitness,TabuList);
+    
+    % Update tabu list
+    TabuList = updateTabuList(mvt);
+    
+    % Update G
+    G = G + 1;
+end
+end
