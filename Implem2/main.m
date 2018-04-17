@@ -13,4 +13,4 @@ NSP.Tmin = [repmat(2,1,2) repmat(4,1,8)];
 NSP.Tmax = [repmat(3,1,2) repmat(7,1,8)];
 
 % Launching Tabu Search
-disp(TabuSearch(NSP));
+TabuSearch(NSP);

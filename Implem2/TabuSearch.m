@@ -1,4 +1,4 @@
-function [S, BestCost] = TabuSearch(NSP)
+function TabuSearch(NSP)
 %% Adding paths
 addpath('Initialization')
 addpath('Constraints')
@@ -18,13 +18,10 @@ TabuList = zeros(size(S,2),size(S,1),size(S,1));
 % Initializing G
 G = 0;
 % Array to Hold Iteration Best Cost
-BestCost=[];
+BestCost=[Fitness(NSP,S)];
 
 %% Termination condition : all constraints fulfilled or Gmax reached
 while G < NSP.Gmax && Fitness(NSP,S) ~= 0
-    
-    % Add Fitness Value to BestCost
-    BestCost = [BestCost Fitness(NSP,S)];
     
     % Generating neighborhood of S
     [N,Nmvt] = Neighborhood(NSP,S);
@@ -44,12 +41,19 @@ while G < NSP.Gmax && Fitness(NSP,S) ~= 0
     % Show Iteration Information
     fprintf("Iterarion %d : %d\n",G,Fitness(NSP,S));
     
+    % Add Fitness Value to BestCost
+    BestCost = [BestCost Fitness(NSP,S)];
+    
     % Plot Best Solution
     figure(1);
     PlotSolution(S,G);
     pause(1);
     
 end
+
+% Plot BestCost
+figure(2);
+PlotBestCosts(BestCost);
 
 %% Removing paths
 rmpath('Initialization')
