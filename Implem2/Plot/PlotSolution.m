@@ -1,4 +1,5 @@
-function PlotSolution(S,G)
+function PlotSolution(S,G,cost)
+figure(1);
 % Planning
 [r, c] = size(S);
 imagesc((1:c), (1:r),S);
@@ -22,5 +23,6 @@ end
 yticklabels(nurses);
 xticklabels(repmat({'AM','PM','N'},1,size(S,2)));
 set(gca,'xaxisLocation','top')
-title(['Nurses Schedule at iteration ' num2str(G)]);
+title(['Nurses Schedule at iteration ' num2str(G) ' (' num2str(cost) ')']);
+pause(1);
 end

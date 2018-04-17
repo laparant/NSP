@@ -19,7 +19,7 @@ for i=1:1:size(X,1)
     % 2 free periods : hard constraint
     for j=1:1:size(X,2)-2
         if X(i,j) + X(i,j+1) + X(i,j+2) > 1
-            value = value + P2free;
+            value = value + P2free*(X(i,j) + X(i,j+1) + X(i,j+2) - 1);
         end
     end
 end

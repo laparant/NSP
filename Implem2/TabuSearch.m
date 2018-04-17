@@ -33,7 +33,7 @@ while G < NSP.Gmax && Fitness(NSP,S) ~= 0
     [S,mvt] = nextSolution(N,Nmvt,NFitness);
     
     % Update tabu list
-    TabuList = updateTabuList(mvt, TabuList);
+    TabuList = updateTabuList(NSP,mvt, TabuList);
     
     % Update G
     G = G + 1;
@@ -45,9 +45,7 @@ while G < NSP.Gmax && Fitness(NSP,S) ~= 0
     BestCost = [BestCost Fitness(NSP,S)];
     
     % Plot Best Solution
-    figure(1);
-    PlotSolution(S,G);
-    pause(1);
+    PlotSolution(S,G,BestCost(end));
     
 end
 
