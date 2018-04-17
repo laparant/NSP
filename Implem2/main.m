@@ -14,4 +14,4 @@ NSP.Tmax = repmat([5],1,NSP.nurses);
 
 
 % Launching Tabu Search
-TabuSearch(NSP);
+disp(TabuSearch(NSP));
