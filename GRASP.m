@@ -1,4 +1,4 @@
-function TabuSearch(NSP)
+function [TotalTime, G] = GRASP(NSP)
 %% Adding paths
 addpath('Initialization')
 addpath('Constraints')
@@ -7,46 +7,65 @@ addpath('Fitness')
 addpath('Plot')
 
 %% Initialization
+global bestS;
+global BestCost
+global Time;
 % Close previous plot
 close all;
 
 % Randomly create the first solution
-S = GenerateRandomSolution(NSP);
+bestS = GenerateRandomSolution(NSP);
+best = Fitness(NSP,bestS);
 
 % Initializing G
 G = 0;
 % Array to Hold Iteration Best Cost
-BestCost=[Fitness(NSP,S)];
+BestCost=[best];
+
+% Initialize time
+Time = [];
 
 %% Termination condition : all constraints fulfilled or Gmax reached
-while G < NSP.Gmax && Fitness(NSP,S) ~= 0
+while G < NSP.Gmax && best ~= 0
+    % Beginning of iteration
+    tic;
     
-    % Generating neighborhood of S
-    [N,Nmvt] = NeighborhoodGRASP(NSP,S);
+    % Randomly create a candidate
+    S = GenerateRandomSolution(NSP);
     
-    % Evaluating the neighboorhood
-    NFitness = FitnessN(NSP,N);
+    % Applying local search to candidate
+    S = LocalSearch(NSP,S);
     
-    % Selecting next solution
-    [S,mvt] = nextSolution(N,Nmvt,NFitness);
-        
+    % Update best solution
+    if Fitness(NSP,S) < best
+        bestS = S;
+        best = Fitness(NSP,S);
+    end
+    
+    % End of iteration
+    Time = [Time toc];
+    
     % Update G
     G = G + 1;
     
     % Show Iteration Information
-    fprintf('Iterarion GRASP%d : %d\n',G,Fitness(NSP,S));
+    % fprintf('[GRASP] Iterarion %d : %d\n',G,best);
     
     % Add Fitness Value to BestCost
-    BestCost = [BestCost Fitness(NSP,S)];
+    BestCost = [BestCost best];
     
     % Plot Best Solution
-    PlotSolution(S,G,BestCost(end));
+    %PlotSolution(bestS,G,best);
     
 end
 
 % Plot BestCost
-figure(2);
-PlotBestCosts(BestCost);
+%PlotBestCosts(BestCost);
+
+% Plot time
+%PlotTime(Time);
+
+TotalTime = sum(Time);
 
 %% Removing paths
 rmpath('Initialization')
