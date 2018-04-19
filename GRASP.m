@@ -1,4 +1,4 @@
-function [TotalTime, G] = GRASP(NSP)
+function GRASP(NSP)
 %% Adding paths
 addpath('Initialization')
 addpath('Constraints')
@@ -49,23 +49,21 @@ while G < NSP.Gmax && best ~= 0
     G = G + 1;
     
     % Show Iteration Information
-    % fprintf('[GRASP] Iterarion %d : %d\n',G,best);
+    fprintf('[GRASP] Iterarion %d : %d\n',G,best);
     
     % Add Fitness Value to BestCost
     BestCost = [BestCost best];
     
     % Plot Best Solution
-    %PlotSolution(bestS,G,best);
+    PlotSolution(bestS,G,best);
     
 end
 
 % Plot BestCost
-%PlotBestCosts(BestCost);
+PlotBestCosts(BestCost);
 
 % Plot time
-%PlotTime(Time);
-
-TotalTime = sum(Time);
+PlotTime(Time);
 
 %% Removing paths
 rmpath('Initialization')

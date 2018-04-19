@@ -1,7 +1,7 @@
 %% Defining NSP (Nurse Scheduling Problem)
 
-K = 5;
-
+% Constant to test on feasible solution
+K = 2;
 % Gmax : maximum number of iterations
 NSP.Gmax = 100000;
 % Number of nurses
@@ -17,10 +17,6 @@ NSP.Tmax = [repmat(3,1,2*K) repmat(7,1,8*K)];
 % Tabu Length (needed for Tabu Search)
 NSP.TabuLength = NSP.nurses * NSP.periods*0.5;
 
-% Launching Tabu Search
-T = zeros(100,1);
-G = zeros(100,1);
-for p=1:1:100
-    [T(p), G(p)] = TabuSearch(NSP);
-    disp(p);
-end
+% Launching the algorithm : GRASP(), TabuSearch()
+TabuSearch(NSP);
+% GRASP(NSP);

@@ -1,4 +1,4 @@
-function [TotalTime, G] = TabuSearch(NSP)
+function TabuSearch(NSP)
 %% Adding paths
 addpath('Initialization')
 addpath('Constraints')
@@ -50,23 +50,21 @@ while G < NSP.Gmax && Fitness(NSP,S) ~= 0
     G = G + 1;
     
     % Show Iteration Information
-    %fprintf("[Tabu Search] Iterarion %d : %d\n",G,Fitness(NSP,S));
+    fprintf("[Tabu Search] Iterarion %d : %d\n",G,Fitness(NSP,S));
     
     % Add Fitness Value to BestCost
     BestCost = [BestCost Fitness(NSP,S)];
     
     % Plot Best Solution
-    %PlotSolution(S,G,BestCost(end));
+    PlotSolution(S,G,BestCost(end));
     
 end
 
 % Plot BestCost
-%PlotBestCosts(BestCost);
+PlotBestCosts(BestCost);
 
 % Plot time
-%PlotTime(Time)
-
-TotalTime = sum(Time);
+PlotTime(Time)
 
 %% Removing paths
 rmpath('Initialization')
